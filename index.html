@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Aditya!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* The Gate Container */
+        .gate-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            perspective: 1000px;
+        }
+
+        .gate {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background: #8b4513;
+            border: 4px solid #5d2e0a;
+            transition: transform 2s ease-in-out;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left-gate {
+            left: 0;
+            transform-origin: left;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .right-gate {
+            right: 0;
+            transform-origin: right;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* When the gate opens */
+        .open .left-gate { transform: rotateY(-120deg); }
+        .open .right-gate { transform: rotateY(120deg); }
+
+        /* The Message Behind the Gate */
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 100%;
+            color: white;
+            z-index: 1;
+        }
+
+        h1 { font-size: 2.5rem; color: #f1c40f; margin-bottom: 10px; }
+        p { font-size: 1.2rem; color: #ecf0f1; }
+
+        .btn-open {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="btn-open" id="openBtn">Open Aditya's Surprise 🎁</button>
+
+    <div class="gate-container" id="gateContainer" style="display: none;">
+        <div class="gate left-gate"></div>
+        <div class="gate right-gate"></div>
+        
+        <div class="message">
+            <h1>🎉 Happy Birthday Aditya! 🎂</h1>
+            <p>Best wishes to you!</p>
+            <p><strong>— From Avikam</strong></p>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('openBtn');
+        const container = document.getElementById('gateContainer');
+
+        btn.addEventListener('click', () => {
+            // Hide button and show gates
+            btn.style.display = 'none';
+            container.style.display = 'block';
+
+            // Slight delay to trigger animation
+            setTimeout(() => {
+                container.classList.add('open');
+                playMusic();
+            }, 100);
+        });
+
+        function playMusic() {
+            // Using a text-to-speech API or standard alert sound logic
+            // Note: Modern browsers require a click to play audio
+            const msg = new SpeechSynthesisUtterance();
+            msg.text = "Happy Birthday Aditya! Best wishes from Avikam.";
+            window.speechSynthesis.speak(msg);
+        }
+    </script>
+</body>
+</html>
